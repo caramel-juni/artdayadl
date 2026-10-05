@@ -1,33 +1,910 @@
+```html
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Art Day</title>
+
     <style>
-        html, body {
-    margin: 0;
-    padding: 0;
-}
-.background-image {
-    display: block;
-    width: 100%;
-    height: auto;
-}
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            background: #000;
+        }
+
+
+        /*
+         * ==========================================================
+         * CAROUSEL VIEWPORT
+         * ==========================================================
+         */
+
+        .background-carousel {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            overflow: hidden;
+
+            /*
+             * JavaScript handles dragging.
+             */
+            touch-action: none;
+
+            /*
+             * Prevent accidental selection.
+             */
+            user-select: none;
+            -webkit-user-select: none;
+
+            /*
+             * Hidden until the image has loaded and enough
+             * copies have been created.
+             */
+            visibility: hidden;
+
+            cursor: grab;
+        }
+
+
+        /*
+         * Reveal after initialisation.
+         */
+        .background-carousel.ready {
+            visibility: visible;
+        }
+
+
+        /*
+         * Cursor while actively dragging.
+         */
+        .background-carousel.dragging {
+            cursor: grabbing;
+        }
+
+
+        /*
+         * ==========================================================
+         * MOVING TRACK
+         * ==========================================================
+         */
+
+        .background-track {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            transform:
+                translate3d(0, 0, 0);
+
+            will-change: transform;
+        }
+
+
+        /*
+         * Artwork.
+         */
+        .background-track img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            /*
+             * Prevent native browser image dragging.
+             */
+            pointer-events: none;
+
+            -webkit-user-drag: none;
+
+            user-select: none;
+            -webkit-user-select: none;
+        }
     </style>
-    <body>
-    <img src="./artdaysept.jpeg" class="background-image" alt="">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <script src="" async defer></script>
-    </body>
+</head>
+
+
+<body>
+
+    <div
+        class="background-carousel"
+        id="backgroundCarousel"
+        aria-label="Scrolling Art Day artwork"
+    >
+
+        <div
+            class="background-track"
+            id="backgroundTrack"
+        >
+
+            <img
+                id="sourceImage"
+                src="./artday-oct.webp"
+                alt=""
+                draggable="false"
+            >
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /*
+         * ==========================================================
+         * CONFIGURATION
+         * ==========================================================
+         */
+
+        /*
+         * Automatic scrolling speed in pixels per second.
+         */
+        const SCROLL_SPEED = 18;
+
+
+        /*
+         * ==========================================================
+         * ELEMENTS
+         * ==========================================================
+         */
+
+        const carousel =
+            document.getElementById(
+                "backgroundCarousel"
+            );
+
+        const track =
+            document.getElementById(
+                "backgroundTrack"
+            );
+
+        const sourceImage =
+            document.getElementById(
+                "sourceImage"
+            );
+
+
+        /*
+         * ==========================================================
+         * STATE
+         * ==========================================================
+         */
+
+        /*
+         * Current vertical position of the artwork.
+         */
+        let position = 0;
+
+
+        /*
+         * Height of ONE complete image.
+         */
+        let imageHeight = 0;
+
+
+        /*
+         * Whether the user is currently holding the
+         * mouse button / finger down.
+         */
+        let isDragging = false;
+
+
+        /*
+         * Pointer currently controlling the carousel.
+         */
+        let pointerId = null;
+
+
+        /*
+         * Y coordinate when the drag started.
+         */
+        let pointerStartY = 0;
+
+
+        /*
+         * Carousel position when the drag started.
+         */
+        let positionAtDragStart = 0;
+
+
+        /*
+         * Timestamp of the previous animation frame.
+         */
+        let lastTime = null;
+
+
+        /*
+         * Browser accessibility setting.
+         */
+        const reducedMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            );
+
+
+        /*
+         * ==========================================================
+         * BUILD IMAGE COPIES
+         * ==========================================================
+         *
+         * Create enough copies to ALWAYS cover the viewport.
+         *
+         * This prevents the white/background gap when dragging.
+         */
+
+        function buildImageCopies() {
+
+            /*
+             * Remove existing clones.
+             *
+             * Keep the original source image.
+             */
+            const images =
+                track.querySelectorAll("img");
+
+            images.forEach(
+                (image, index) => {
+
+                    if (index !== 0) {
+                        image.remove();
+                    }
+
+                }
+            );
+
+
+            /*
+             * Determine the rendered image height.
+             */
+            imageHeight =
+                sourceImage.getBoundingClientRect().height;
+
+
+            if (
+                imageHeight <= 0 ||
+                !Number.isFinite(imageHeight)
+            ) {
+                return;
+            }
+
+
+            /*
+             * We need enough artwork to cover:
+             *
+             *     viewport
+             *
+             * plus:
+             *
+             *     one additional image
+             *
+             * plus:
+             *
+             *     one safety copy.
+             */
+            const requiredHeight =
+                window.innerHeight +
+                imageHeight;
+
+
+            const requiredCopies =
+                Math.ceil(
+                    requiredHeight /
+                    imageHeight
+                ) + 1;
+
+
+            /*
+             * Clone the image.
+             */
+            for (
+                let i = 1;
+                i < requiredCopies;
+                i++
+            ) {
+
+                const clone =
+                    sourceImage.cloneNode(true);
+
+                clone.alt = "";
+
+                clone.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                clone.draggable = false;
+
+                track.appendChild(
+                    clone
+                );
+            }
+
+
+            /*
+             * Keep position within one image cycle.
+             */
+            normalizePosition();
+
+            render();
+        }
+
+
+        /*
+         * ==========================================================
+         * NORMALISE POSITION
+         * ==========================================================
+         *
+         * The visual pattern repeats every imageHeight pixels.
+         *
+         * Therefore:
+         *
+         *     0
+         *     -imageHeight
+         *
+         * represent exactly the same visual state.
+         */
+
+        function normalizePosition() {
+
+            if (imageHeight <= 0) {
+                return;
+            }
+
+
+            /*
+             * Scrolling upward.
+             */
+            while (
+                position <= -imageHeight
+            ) {
+
+                position += imageHeight;
+            }
+
+
+            /*
+             * Dragging downward.
+             */
+            while (
+                position > 0
+            ) {
+
+                position -= imageHeight;
+            }
+        }
+
+
+        /*
+         * ==========================================================
+         * RENDER
+         * ==========================================================
+         */
+
+        function render() {
+
+            track.style.transform =
+                `translate3d(
+                    0,
+                    ${position}px,
+                    0
+                )`;
+        }
+
+
+        /*
+         * ==========================================================
+         * ANIMATION LOOP
+         * ==========================================================
+         *
+         * IMPORTANT:
+         *
+         * There is NO hover check here.
+         *
+         * The artwork continues moving regardless of where the
+         * mouse is.
+         *
+         * The ONLY thing that stops automatic scrolling is:
+         *
+         *     isDragging === true
+         *
+         */
+
+        function animate(timestamp) {
+
+            if (lastTime === null) {
+                lastTime = timestamp;
+            }
+
+
+            /*
+             * Seconds since the previous frame.
+             */
+            let delta =
+                (timestamp - lastTime) / 1000;
+
+
+            lastTime = timestamp;
+
+
+            /*
+             * Prevent a huge jump if the browser was suspended.
+             */
+            delta =
+                Math.min(delta, 0.1);
+
+
+            /*
+             * Automatically scroll ONLY when the user
+             * isn't holding the pointer down.
+             */
+            if (
+                !isDragging &&
+                !reducedMotion.matches
+            ) {
+
+                position -=
+                    SCROLL_SPEED * delta;
+
+
+                normalizePosition();
+
+                render();
+            }
+
+
+            requestAnimationFrame(
+                animate
+            );
+        }
+
+
+        /*
+         * ==========================================================
+         * POINTER DOWN
+         * ==========================================================
+         *
+         * This is now the ONLY event that pauses automatic
+         * scrolling.
+         */
+
+        carousel.addEventListener(
+            "pointerdown",
+            function (event) {
+
+                /*
+                 * Only use the primary pointer.
+                 */
+                if (!event.isPrimary) {
+                    return;
+                }
+
+
+                /*
+                 * Ignore right-click.
+                 */
+                if (
+                    event.pointerType === "mouse" &&
+                    event.button !== 0
+                ) {
+                    return;
+                }
+
+
+                /*
+                 * STOP automatic scrolling.
+                 */
+                isDragging = true;
+
+
+                pointerId =
+                    event.pointerId;
+
+
+                /*
+                 * Record where the pointer started.
+                 */
+                pointerStartY =
+                    event.clientY;
+
+
+                /*
+                 * Record the exact carousel position.
+                 */
+                positionAtDragStart =
+                    position;
+
+
+                /*
+                 * Continue receiving movement events even if
+                 * the pointer leaves the carousel.
+                 */
+                carousel.setPointerCapture(
+                    pointerId
+                );
+
+
+                carousel.classList.add(
+                    "dragging"
+                );
+
+
+                event.preventDefault();
+            }
+        );
+
+
+        /*
+         * ==========================================================
+         * POINTER MOVE
+         * ==========================================================
+         */
+
+        carousel.addEventListener(
+            "pointermove",
+            function (event) {
+
+                if (
+                    !isDragging ||
+                    event.pointerId !== pointerId
+                ) {
+                    return;
+                }
+
+
+                /*
+                 * Distance moved vertically.
+                 */
+                const deltaY =
+                    event.clientY -
+                    pointerStartY;
+
+
+                /*
+                 * Move from the exact location where the
+                 * user grabbed the image.
+                 */
+                position =
+                    positionAtDragStart +
+                    deltaY;
+
+
+                /*
+                 * Keep the infinite loop seamless.
+                 */
+                normalizePosition();
+
+                render();
+
+
+                event.preventDefault();
+            }
+        );
+
+
+        /*
+         * ==========================================================
+         * POINTER RELEASE
+         * ==========================================================
+         *
+         * This is the important part.
+         *
+         * We DO NOT reset position.
+         *
+         * The automatic scroll simply starts again from
+         * wherever the user released the artwork.
+         */
+
+        function finishDrag(event) {
+
+            if (
+                !isDragging ||
+                event.pointerId !== pointerId
+            ) {
+                return;
+            }
+
+
+            /*
+             * Stop manual dragging.
+             */
+            isDragging = false;
+
+
+            /*
+             * Keep EXACT release position.
+             */
+            normalizePosition();
+
+            render();
+
+
+            /*
+             * Reset the animation clock.
+             *
+             * This prevents a large jump in the first frame
+             * after releasing the mouse/finger.
+             */
+            lastTime =
+                performance.now();
+
+
+            pointerId = null;
+
+
+            carousel.classList.remove(
+                "dragging"
+            );
+
+
+            /*
+             * Release pointer capture.
+             */
+            try {
+
+                if (
+                    carousel.hasPointerCapture(
+                        event.pointerId
+                    )
+                ) {
+
+                    carousel.releasePointerCapture(
+                        event.pointerId
+                    );
+                }
+
+            } catch (error) {
+                /*
+                 * Nothing to do.
+                 */
+            }
+
+
+            event.preventDefault();
+        }
+
+
+        carousel.addEventListener(
+            "pointerup",
+            finishDrag
+        );
+
+
+        carousel.addEventListener(
+            "pointercancel",
+            finishDrag
+        );
+
+
+        /*
+         * ==========================================================
+         * REDUCED MOTION
+         * ==========================================================
+         *
+         * Manual dragging remains available even when reduced
+         * motion is enabled.
+         *
+         * Only the automatic movement is disabled.
+         */
+
+        function reducedMotionChanged() {
+
+            lastTime =
+                performance.now();
+
+            render();
+        }
+
+
+        if (
+            reducedMotion.addEventListener
+        ) {
+
+            reducedMotion.addEventListener(
+                "change",
+                reducedMotionChanged
+            );
+
+        } else if (
+            reducedMotion.addListener
+        ) {
+
+            reducedMotion.addListener(
+                "change",
+                reducedMotionChanged
+            );
+        }
+
+
+        /*
+         * ==========================================================
+         * RESIZE
+         * ==========================================================
+         */
+
+        let resizeTimer = null;
+
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                clearTimeout(
+                    resizeTimer
+                );
+
+
+                resizeTimer =
+                    setTimeout(
+                        function () {
+
+                            buildImageCopies();
+
+                            lastTime =
+                                performance.now();
+
+                        },
+                        100
+                    );
+            }
+        );
+
+
+        /*
+         * ==========================================================
+         * INITIALISE
+         * ==========================================================
+         */
+
+        async function initialise() {
+
+            try {
+
+                /*
+                 * Wait until the image has actually decoded.
+                 */
+                if (
+                    sourceImage.decode
+                ) {
+
+                    await sourceImage.decode();
+
+                } else {
+
+                    await new Promise(
+                        function (resolve) {
+
+                            if (
+                                sourceImage.complete
+                            ) {
+
+                                resolve();
+
+                            } else {
+
+                                sourceImage.addEventListener(
+                                    "load",
+                                    resolve,
+                                    {
+                                        once: true
+                                    }
+                                );
+                            }
+                        }
+                    );
+                }
+
+
+                /*
+                 * Determine dimensions and create enough
+                 * copies.
+                 */
+                buildImageCopies();
+
+
+                /*
+                 * Only reveal after everything is ready.
+                 */
+                carousel.classList.add(
+                    "ready"
+                );
+
+
+                /*
+                 * Start animation.
+                 */
+                lastTime =
+                    performance.now();
+
+
+                requestAnimationFrame(
+                    animate
+                );
+
+
+            } catch (error) {
+
+                /*
+                 * Don't leave the page permanently invisible
+                 * if image decoding fails.
+                 */
+                carousel.classList.add(
+                    "ready"
+                );
+
+                console.error(
+                    "Carousel initialisation failed:",
+                    error
+                );
+            }
+        }
+
+
+        initialise();
+
+    </script>
+
+</body>
 </html>
+```
+
+The key change is that there is now **no concept of hover pausing at all**.
+
+The animation condition is simply:
+
+```js
+if (!isDragging && !reducedMotion.matches) {
+    position -= SCROLL_SPEED * delta;
+}
+```
+
+So the interaction is now exactly:
+
+```text
+                         MOUSE ENTER
+                              │
+                              ▼
+                     ┌─────────────────┐
+                     │ KEEP SCROLLING  │
+                     └────────┬────────┘
+                              │
+                         MOUSE DOWN
+                              │
+                              ▼
+                     ┌─────────────────┐
+                     │      PAUSE      │
+                     │                 │
+                     │    DRAG IMAGE   │
+                     └────────┬────────┘
+                              │
+                         MOUSE UP
+                              │
+                              ▼
+                     ┌─────────────────┐
+                     │ RESUME AT EXACT │
+                     │ RELEASE POSITION│
+                     └─────────────────┘
+```
+
+So simply moving your mouse onto the poster **cannot affect the scrolling anymore**. Only an actual `pointerdown` pauses it.
+
+One other important detail: **reduced-motion does not disable dragging**. Someone who prefers reduced motion can still manually explore the artwork; it only prevents the automatic movement.
