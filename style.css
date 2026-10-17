@@ -226,6 +226,8 @@ a {
     opacity: .7
 }
 
+
+/* ---- scrapbook sections ---- */
 .scrapheader {
     background: var(--paper);
     padding: .5rem .5rem;
@@ -242,14 +244,47 @@ a {
     box-shadow: 2px 3px 0 #0003;
 }
 
-/* Choose left or right for each block */
+/* Each scrapbook section */
+.scrapgroup {
+    max-width: 48rem;
+    margin: 2rem 0;
+}
+
+/* Image and description side by side */
+.scrapbody {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+/* Image styled as a paper scrap */
+.scrapimage {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background: var(--paper);
+    padding: .4rem;
+    box-shadow: 2px 3px 0 #0003;
+}
+
+/* LEFT: heading left, image left, description right */
 .scrapgroup.left .scrapheader {
     transform: rotate(-1deg);
     margin-right: auto;
 }
 
+.scrapgroup.left .scrapimage {
+    transform: rotate(1.2deg);
+}
+
 .scrapgroup.left .scrap {
-    transform: rotate(-1deg);
+    transform: rotate(-.5deg);
+}
+
+/* RIGHT: heading right, description left, image right */
+.scrapgroup.right {
     margin-left: auto;
 }
 
@@ -258,10 +293,59 @@ a {
     margin-left: auto;
 }
 
-.scrapgroup.right .scrap {
-    transform: rotate(1.2deg);
-    margin-right: auto;
+.scrapgroup.right .scrapbody {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
 }
+
+.scrapgroup.right .scrapimage {
+    grid-column: 2;
+    grid-row: 1;
+    transform: rotate(-1deg);
+}
+
+.scrapgroup.right .scrap {
+    grid-column: 1;
+    grid-row: 1;
+    transform: rotate(1deg);
+}
+
+/* Mobile: heading, then image, then description */
+@media (max-width: 600px) {
+    .scrapgroup,
+    .scrapgroup.right {
+        width: 100%;
+        max-width: 100%;
+        margin: 1.5rem 0;
+    }
+
+    .scrapheader {
+        max-width: 90%;
+    }
+
+    .scrapbody,
+    .scrapgroup.right .scrapbody {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
+    .scrapimage,
+    .scrapgroup.right .scrapimage {
+        width: 85%;
+        max-width: 22rem;
+        align-self: center;
+        order: 0;
+    }
+
+    .scrap,
+    .scrapgroup.right .scrap {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        order: 1;
+    }
+}
+
 
 button {
     font: inherit;
