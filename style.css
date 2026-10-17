@@ -28,6 +28,7 @@ body {
     color: var(--ink)
 }
 
+/* background */
 html {
     background: linear-gradient(#5aa9e6, #d9f1ff) fixed
 }
@@ -43,14 +44,20 @@ main {
     box-shadow: inset 0 0 25px #0007, 0 8px 0 #0004, 0 16px 30px #0005
 }
 
+/* Real clouds drifting across the sky */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: radial-gradient(ellipse 120px 34px at 150px 90px, #fff 62%, #0000 64%), radial-gradient(ellipse 80px 30px at 100px 106px, #fff 62%, #0000 64%), radial-gradient(ellipse 90px 30px at 210px 106px, #fff 62%, #0000 64%), radial-gradient(ellipse 160px 42px at 600px 260px, #fff 62%, #0000 64%), radial-gradient(ellipse 100px 34px at 540px 280px, #fff 62%, #0000 64%), radial-gradient(ellipse 110px 30px at 780px 70px, #fff 62%, #0000 64%);
-    background-size: 900px 420px;
-    animation: sky 120s linear infinite
+    pointer-events: none;
+
+    background-image: url("img/background/clouds.png");
+    background-repeat: repeat-x;
+    background-position: 0 center;
+    background-size: auto;
+
+    animation: sky 40s linear infinite;
 }
 
 h1 {
@@ -535,7 +542,7 @@ h1 span {
 }
 
 h1 span:nth-child(4n+1) {
-    background: #fff;
+    background: #ffaf71;
     font-family: var(--f-type);
     transform: rotate(-3deg)
 }
@@ -555,7 +562,7 @@ h1 span:nth-child(4n+3) {
 
 h1 span:nth-child(4n) {
     background: var(--red);
-    color: #fff;
+    color: #dec400;
     transform: rotate(3deg)
 }
 
