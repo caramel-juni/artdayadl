@@ -1,1 +1,1 @@
-Put your downloaded freesound.org clip here as sky.mp3 (see GUIDE.md section 9).
+Put your downloaded freesound.org clip here as windchimes-birds.WAV (see GUIDE.md section 9).

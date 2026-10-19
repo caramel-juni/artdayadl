@@ -47,39 +47,38 @@ export function leaves() {
   setTimeout(spawn, 3000);
 }
 
-/** Sound toggle. Plays audio/sky.mp3; if that file is missing, falls back to synthesised soft wind. */
+/** Sound toggle. Plays audio/windchimes-birds.WAV; if that file is missing, falls back to synthesised soft wind. */
+/** Toggle sky ambience using the existing footer audio element. */
 export function ambience() {
-  const button = el('button', 'snd ico', '🔇');
-  button.type = 'button';
-  button.title = 'Sky ambience on/off';
-  button.setAttribute('aria-label', 'Sky ambience');
-  button.setAttribute('aria-pressed', 'false');
-  let audio, synth, on = false;
+    const audio = document.querySelector('audio[src="audio/windchimes-birds.wav"]');
+    if (!audio) return;
 
-  const softWind = () => { // low-passed brown noise with a slow wobble in the filter
-    const ctx = new AudioContext();
-    const buf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate), data = buf.getChannelData(0);
-    let last = 0;
-    for (let i = 0; i < data.length; i++) { last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; data[i] = last * 3.5; }
-    const src = ctx.createBufferSource(), lowpass = ctx.createBiquadFilter(), gain = ctx.createGain();
-    const lfo = ctx.createOscillator(), lfoGain = ctx.createGain();
-    src.buffer = buf; src.loop = true; lowpass.type = 'lowpass'; lowpass.frequency.value = 500; gain.gain.value = 0.25;
-    lfo.frequency.value = 0.1; lfoGain.gain.value = 250;
-    lfo.connect(lfoGain).connect(lowpass.frequency);
-    src.connect(lowpass).connect(gain).connect(ctx.destination);
-    src.start(); lfo.start();
-    return ctx;
-  };
+    audio.loop = true;
+    audio.volume = CONFIG.ambienceVolume;
 
-  button.onclick = () => {
-    on = !on;
-    button.textContent = on ? '🔊' : '🔇';
-    button.setAttribute('aria-pressed', String(on));
-    if (!on) { audio?.pause(); synth?.suspend(); return; }
-    audio ??= Object.assign(new Audio(CONFIG.ambienceFile), { loop: true, volume: CONFIG.ambienceVolume });
-    audio.play().catch(() => { synth ? synth.resume() : (synth = softWind()); });
-  };
-  document.body.append(button);
+    const button = el('button', 'snd ico', audio.paused ? '🔊' : '🔇');
+    button.type = 'button';
+    button.title = 'Sky ambience on/off';
+    button.setAttribute('aria-label', 'Sky ambience');
+    button.setAttribute('aria-pressed', String(!audio.paused));
+
+    button.onclick = async () => {
+        if (audio.paused) {
+            try {
+                await audio.play();
+                button.textContent = '🔊';
+                button.setAttribute('aria-pressed', 'true');
+            } catch (error) {
+                console.warn('Could not play ambience:', error);
+            }
+        } else {
+            audio.pause();
+            button.textContent = '🔇';
+            button.setAttribute('aria-pressed', 'false');
+        }
+    };
+
+    document.body.append(button);
 }
 
 /** Early-internet visitor counter (counts this browser's visits; the footer markup is in each page). */

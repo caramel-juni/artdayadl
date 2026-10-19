@@ -7,6 +7,6 @@ export const CONFIG = {
   leafGapMs: [6000, 20000],          // random wait between drifting leaves [min, max]
   leafSeconds: [14, 24],             // how long a leaf takes to cross the screen
   leafEmoji: ['🍃', '🍂', '🍁'],
-  ambienceFile: 'audio/sky.mp3',     // your freesound clip (falls back to synthesised wind)
+  ambienceFile: 'audio/windchimes-birds.WAV',     // your freesound clip (falls back to synthesised wind)
   ambienceVolume: 0.35,
 };
