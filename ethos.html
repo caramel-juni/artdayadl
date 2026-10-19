@@ -1,69 +1,178 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; font-src 'self'; media-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
-  <title>ethos · Art Day</title>
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="js/main.js"></script>
-  <script src="oneko.js" defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'none'; img-src 'self'; font-src 'self'; media-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'"
+    >
+
+    <title>ethos · Art Day</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="js/main.js"></script>
+    <script src="oneko.js" defer></script>
 </head>
+
 <body data-p="ethos">
-  <main>
-    <noscript><p class="scrap">The menu needs JavaScript. <a href="index.html">Home</a></p></noscript>
-    <div data-include="header"></div>
-    <h1>what we're all about!</h1>
-  
+    <main>
+        <noscript>
+            <p class="scrap">
+                The menu needs JavaScript.
+                <a href="index.html">Home</a>
+            </p>
+        </noscript>
 
-<div class="scrapgroup left">
-    <p class="scrapheader">What is Art Day?</p>
+        <div data-include="header"></div>
 
-    <div class="scrapbody">
-        <img
-            class="scrapimage"
-            src="img/photos/whoarewe4.jpg"
-            alt="Art supplies laid out for a community art session"
-        >
+        <h1>what we're all about!</h1>
 
-        <p class="scrap">
-            Art Day is a <strong>free event</strong> where people work on their own <strong>creative projects</strong> in the same space while <strong>meeting and socialising with others</strong>. Art supplies are provided for painting, drawing, collaging, clay and more. <br><br>
-            Everyone is invited to bring projects or supplies in any creative medium of their choosing (including sewing, digital art, writing, and music). <br><br>
-            There will be free food for people to help themselves to, and we have a separate quiet space at our events, for anyone overstimulated or socially drained.
-        </p>
-    </div>
-</div>
+        <!-- SECTION 1: WHAT IS ART DAY? -->
+        <section class="scrapgroup left" aria-labelledby="what-is-art-day">
+            <h2 class="scrapheader" id="what-is-art-day">
+                What is Art Day?
+            </h2>
 
-<div class="scrapgroup right">
-    <p class="scrapheader">What are we all about?</p>
+            <div class="scrapbody">
 
-    <div class="scrapbody">
-        <img
-            class="scrapimage"
-            src="img/photos/whoarewe3.jpg"
-            alt="Art supplies laid out for a community art session"
-        >
-        <p class="scrap">
-          We want to <strong>build community through art.</strong> Social disconnection and digital overload are hitting harder than ever in a world that feels <strong>more out of our control every day.</strong> <br><br>
-          Art Day is about <strong>carving out a space</strong> away from all this, where we can <strong>come together and get back in touch with what recharges us the most.</strong><br><br>
-          By holding these as monthly events we hope to be the <strong>springboard for a community life</strong> beyond just the events themselves.
-        </p>
-    </div>
-</div>
+                <div class="scrapphotos">
+                    <img
+                        class="scrapimage"
+                        src="img/photos/whoarewe4.jpg"
+                        alt="Photograph from an Art Day gathering"
+                        loading="lazy"
+                    >
 
-<div class="scrapgroup left">
-    <p class="scrapheader">What are our values?</p>
-    <div class="scrapbody">
-        <img
-            class="scrapimage"
-            src="img/photos/whoarewe5.jpg"
-            alt="Art supplies laid out for a community art session">
-    <p class="scrap">
-        We want everybody that comes to Art Day to <strong>feel welcome and considered.</strong> Which means it is an absolute priority for us to make it an <strong>inclusive, queer-friendly, accessible, and respectful environment.</strong><br><br>
-        <strong>Art Day at its heart is about kindness, open-mindedness, curiosity, and play!</strong>
-    </div>
-</div>
-  </main>
-  <div data-include="footer"></div>
+                    <img
+                        class="scrapextra"
+                        src="img/photos/whoarewe1.jpg"
+                        alt="Another moment from an Art Day gathering"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="scrap">
+                    <p>
+                        Art Day is a <strong>free event</strong> where people
+                        work on their own <strong>creative projects</strong>
+                        in the same space while
+                        <strong>meeting and socialising with others</strong>.
+                        Art supplies are provided for painting, drawing,
+                        collaging, clay and more.
+                    </p>
+
+                    <p>
+                        Everyone is invited to bring projects or supplies
+                        in any creative medium of their choosing, including
+                        sewing, digital art, writing and music.
+                    </p>
+
+                    <p>
+                        There will be free food for people to help themselves
+                        to, and we have a separate quiet space at our events
+                        for anyone who feels overstimulated or socially drained.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: WHAT ARE WE ALL ABOUT? -->
+        <section class="scrapgroup right" aria-labelledby="what-we-are-about">
+            <h2 class="scrapheader" id="what-we-are-about">
+                What are we all about?
+            </h2>
+
+            <div class="scrapbody">
+
+                <div class="scrapphotos">
+                    <img
+                        class="scrapimage"
+                        src="img/photos/whoarewe3.jpg"
+                        alt="Photograph from an Art Day community event"
+                        loading="lazy"
+                    >
+
+                    <img
+                        class="scrapextra"
+                        src="img/photos/whoarewe6.JPG"
+                        alt="Another moment from the Art Day community"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="scrap">
+                    <p>
+                        We want to <strong>build community through art.</strong>
+                        Social disconnection and digital overload are hitting
+                        harder than ever in a world that feels
+                        <strong>more out of our control every day.</strong>
+                    </p>
+
+                    <p>
+                        Art Day is about <strong>carving out a space</strong>
+                        away from all this, where we can
+                        <strong>come together and get back in touch with what
+                        recharges us the most.</strong>
+                    </p>
+
+                    <p>
+                        By holding these as monthly events, we hope to be the
+                        <strong>springboard for a community life</strong>
+                        beyond just the events themselves.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: WHAT ARE OUR VALUES? -->
+        <section class="scrapgroup left" aria-labelledby="our-values">
+            <h2 class="scrapheader" id="our-values">
+                What are our values?
+            </h2>
+
+            <div class="scrapbody">
+
+                <div class="scrapphotos">
+                    <img
+                        class="scrapimage"
+                        src="img/photos/whoarewe5.jpg"
+                        alt="Photograph representing the Art Day community"
+                        loading="lazy"
+                    >
+
+                    <img
+                        class="scrapextra"
+                        src="img/photos/whoarewe2.jpg"
+                        alt="Another photograph from Art Day"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="scrap">
+                    <p>
+                        We want everybody that comes to Art Day to
+                        <strong>feel welcome and considered.</strong>
+                        Which means it is an absolute priority for us to make
+                        it an <strong>inclusive, queer-friendly, accessible,
+                        and respectful environment.</strong>
+                    </p>
+
+                    <p>
+                        <strong>
+                            Art Day at its heart is about kindness,
+                            open-mindedness, curiosity, and play!
+                        </strong>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div data-include="footer"></div>
 </body>
 </html>

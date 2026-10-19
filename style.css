@@ -44,7 +44,7 @@ main {
 
     background-color: var(--bg);
     background-image:
-        url("img/background/pinup-board.jpg");
+    url("img/background/pinup-board.jpg");
     background-repeat: repeat;
     background-position: top left;
     background-size: 500px auto;
@@ -244,38 +244,47 @@ a {
 }
 
 
+
+
 /* ---- scrapbook sections ---- */
+
+.scrapgroup {
+    width: 100%;
+    max-width: 48rem;
+    margin: 2rem 0;
+}
+
+/* Scrapbook heading */
 .scrapheader {
+    width: min(100%, 34rem);
+    margin: 0 0 1rem;
+    padding: .5rem .8rem;
     background: var(--paper);
-    padding: .5rem .5rem;
-    max-width: 34rem;
     box-shadow: 2px 3px 0 #0003;
     font-weight: bold;
     font-size: 1.2em;
 }
 
-.scrap {
-    background: var(--paper);
-    padding: 1rem 1.4rem;
-    max-width: 34rem;
-    box-shadow: 2px 3px 0 #0003;
-}
-
-/* Each scrapbook section */
-.scrapgroup {
-    max-width: 48rem;
-    margin: 2rem 0;
-}
-
-/* Image and description side by side */
+/* Two-column layout: photo stack + description */
 .scrapbody {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
-    gap: 1rem;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr);
+    gap: 1.2rem;
     align-items: start;
 }
 
-/* Image styled as a paper scrap */
+/* Keep both photos together in one column */
+.scrapphotos {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    min-width: 0;
+}
+
+/* Main photo */
 .scrapimage {
     display: block;
     width: 100%;
@@ -286,38 +295,83 @@ a {
     box-shadow: 2px 3px 0 #0003;
 }
 
-/* LEFT: heading left, image left, description right */
-.scrapgroup.left .scrapheader {
-    transform: rotate(-1deg);
-    margin-right: auto;
+/* Extra photo beneath the main photo */
+.scrapextra {
+    display: block;
+    width: 88%;
+    max-width: 40rem;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    align-self: center;
+    padding: .4rem;
+    background: #fff9e9;
+    border: 1px solid #ded2b8;
+    box-shadow: 2px 3px 0 #0003;
 }
 
+/* Slightly different rotations for a handmade effect */
 .scrapgroup.left .scrapimage {
     transform: rotate(1.2deg);
+}
+
+.scrapgroup.left .scrapextra {
+    transform: rotate(-2deg);
+}
+
+.scrapgroup.right .scrapimage {
+    transform: rotate(-1deg);
+}
+
+.scrapgroup.right .scrapextra {
+    transform: rotate(2deg);
+}
+
+/* Description paper */
+.scrap {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 1rem 1.4rem 1.6rem;
+    background: var(--paper);
+    box-shadow: 2px 3px 0 #0003;
+}
+
+/* Paragraph spacing */
+.scrap p {
+    margin: 0 0 1.2em;
+}
+
+.scrap p:last-child {
+    margin-bottom: 0;
+}
+
+/* LEFT: photo stack on the left, text on the right */
+.scrapgroup.left .scrapheader {
+    margin-right: auto;
+    transform: rotate(-1deg);
 }
 
 .scrapgroup.left .scrap {
     transform: rotate(-.5deg);
 }
 
-/* RIGHT: heading right, description left, image right */
+/* RIGHT: text on the left, photo stack on the right */
 .scrapgroup.right {
     margin-left: auto;
 }
 
 .scrapgroup.right .scrapheader {
-    transform: rotate(1.2deg);
     margin-left: auto;
+    transform: rotate(1.2deg);
 }
 
-.scrapgroup.right .scrapbody {
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-}
-
-.scrapgroup.right .scrapimage {
+.scrapgroup.right .scrapphotos {
     grid-column: 2;
     grid-row: 1;
-    transform: rotate(-1deg);
 }
 
 .scrapgroup.right .scrap {
@@ -326,8 +380,8 @@ a {
     transform: rotate(1deg);
 }
 
-/* Mobile: heading, then image, then description */
-@media (max-width: 600px) {
+/* Medium screens: preserve two columns if they fit */
+@media (max-width: 760px) {
     .scrapgroup,
     .scrapgroup.right {
         width: 100%;
@@ -335,33 +389,76 @@ a {
         margin: 1.5rem 0;
     }
 
-    .scrapheader {
-        max-width: 90%;
+    .scrapbody {
+        grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+        gap: .8rem;
+    }
+
+    .scrap,
+    .scrapgroup.right .scrap {
+        padding: 1rem 1rem 1.6rem;
+    }
+
+    .scrapphotos {
+        gap: .9rem;
+    }
+
+    .scrapextra {
+        width: 92%;
+    }
+}
+
+/* Phones: photo stack first, description underneath */
+@media (max-width: 600px) {
+    .scrapheader,
+    .scrapgroup.right .scrapheader {
+        width: 90%;
+        max-width: 100%;
     }
 
     .scrapbody,
     .scrapgroup.right .scrapbody {
         display: flex;
         flex-direction: column;
-        gap: .75rem;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .scrapphotos,
+    .scrapgroup.right .scrapphotos {
+        order: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        gap: .8rem;
     }
 
     .scrapimage,
     .scrapgroup.right .scrapimage {
-        width: 85%;
-        max-width: 22rem;
-        align-self: center;
-        order: 0;
+        width: min(62%, 22rem);
+        max-width: 100%;
+    }
+
+    .scrapextra,
+    .scrapgroup.right .scrapextra {
+        width: min(48%, 12rem);
+        max-width: 100%;
+        margin-top: .5rem;
     }
 
     .scrap,
     .scrapgroup.right .scrap {
-        box-sizing: border-box;
+        order: 1;
         width: 100%;
         max-width: 100%;
-        order: 1;
+        padding: 1rem 1rem 1.6rem;
     }
 }
+
+
 
 
 button {
@@ -384,12 +481,11 @@ button {
 }
 
 [data-p=archive] main {
-    background: #1b1b1f;
     color: #eee
 }
 
 [data-p=archive] .pinnav {
-    background: #fff2
+    background: #fff2;
 }
 
 .grid {
@@ -421,9 +517,6 @@ figure img {
     margin-bottom: .4rem
 }
 
-[data-p=artists] main {
-    background: #f3efe6 radial-gradient(#0002 1.5px, transparent 1.5px) 0 0/18px 18px
-}
 
 #wall {
     display: flex;
@@ -450,16 +543,6 @@ figure img {
 
 .card img {
     width: 100%
-}
-
-[data-p=notices] main {
-    --bg: #a87b4a;
-    background: var(--bg) radial-gradient(#0003 1px, transparent 1.5px) 0 0/6px 6px
-}
-
-[data-p=contact] main {
-    --bg: #c9a26b;
-    background: var(--bg) repeating-linear-gradient(135deg, transparent 0 1.5rem, #0001 1.5rem 3rem)
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -702,10 +785,11 @@ footer {
     min-height: 30rem;
     background: #008080;
     overflow: hidden;
-    box-shadow: var(--in);
     font: var(--ui-size)/1.3 var(--f-ui);
     -webkit-font-smoothing: none;
-    color: #000
+    color: #000;
+    border: 10px solid;
+    border-color: #62401e #3b2411 #301d0c #523216;
 }
 
 .icons {
@@ -1060,11 +1144,6 @@ dialog.note .x {
 .pinnav a:nth-child(7) {
     transform: rotate(2deg);
     background: #c9a26b
-}
-
-[data-p=guestbook] main {
-    --bg: #d8cdb4;
-    background: var(--bg) repeating-linear-gradient(90deg, #0000 0 3rem, #0001 3rem 3.1rem)
 }
 
 .gbwrap {
