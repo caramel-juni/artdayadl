@@ -94,7 +94,7 @@ a {
     padding: .8rem;
     position: sticky;
     top: 0;
-    z-index: 5;
+    z-index: 999;
     background: #0002;
     backdrop-filter: blur(3px)
 }

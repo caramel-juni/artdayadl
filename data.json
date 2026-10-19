@@ -1,74 +1,259 @@
 {
- "event": {
-  "title": "Art Day: October!",
-  "date": "October 24th, 11:30am - 4:30pm",
-  "place": "Richards Park, Osmond Terrace, Norwood 5067",
-  "details": "Bring projects, a spark of creativity, friends, and a plate of food to share (if you'd like!). Art supplies & materials provided.",
-  "poster": "img/posters/artday-oct.webp"
- },
- "pins": [
-  {
-   "type": "callout",
-   "title": "sample community noticeboard title",
-   "by": "Juni",
-   "body": "Looking to do some cool art with cool people :D !"
+  "event": {
+    "title": "Art Day: October!",
+    "date": "October 24th, 11:30am - 4:30pm",
+    "place": "Richards Park, Osmond Terrace, Norwood 5067",
+    "details": "Bring projects, a spark of creativity, friends, and a plate of food to share (if you'd like!). Art supplies & materials provided.",
+    "poster": "img/posters/artday-oct.webp"
   },
-  {
-   "type": "showcase",
-   "title": "sample community noticeboard title 2",
-   "by": "juni",
-   "body": "Looking to do some cool art with cool people......!!!!"
-  },
-  {
-   "type": "callout",
-   "title": "Click meeeeeee",
-   "by": "juniiiii",
-   "body": "I should think of something more original here"
-  }
- ],
- "artists": [
-  {
-   "name": "Juni",
-   "medium": "Linocut",
-   "added": "2026-01-10",
-   "img": "",
-   "blurb": "Craves caramel slice and tea."
-  },
-  {
-   "name": "Liz",
-   "medium": "Zines",
-   "added": "2026-03-02",
-   "img": "",
-   "blurb": "A beautiful human bean <3."
-  },
-  {
-   "name": "Zanny",
-   "medium": "Textile collage",
-   "added": "2026-05-21",
-   "img": "",
-   "blurb": "A beautiful human bean <3."
-  }
- ],
- "archive": [
-  {
-   "date": "2026-09-05",
-   "title": "Art Days September!",
-   "note": "note here!.",
-   "photos": [
-    "img/photo1.svg",
-    "img/photo2.svg",
-    "img/photo3.svg"
-   ]
-  },
-  {
-   "date": "2026-08-01",
-   "title": "Art Days October!",
-   "note": "note here!.",
-   "photos": [
-    "img/photo1.svg",
-    "img/photo2.svg"
-   ]
-  }
- ],
- "contact": "info@artdayadl.com"
+  "pins": [
+    {
+      "type": "callout",
+      "title": "sample community noticeboard title",
+      "by": "Juni",
+      "body": "Looking to do some cool art with cool people :D !"
+    },
+    {
+      "type": "showcase",
+      "title": "sample community noticeboard title 2",
+      "by": "juni",
+      "body": "Looking to do some cool art with cool people......!!!!"
+    },
+    {
+      "type": "callout",
+      "title": "Click meeeeeee",
+      "by": "juniiiii",
+      "body": "I should think of something more original here"
+    }
+  ],
+  "artists": [
+    {
+      "name": "Juni",
+      "medium": "Mixed Media - Film, Tech, Writing & Visual Art",
+      "added": "2026-01-10",
+      "img": "/img/photos/junipfp.JPG",
+      "blurb": "Craves caramel slice and tea."
+    },
+    {
+      "name": "Liz",
+      "medium": "All sorts!",
+      "added": "2026-03-02",
+      "img": "/img/past-artdays/2026/March26/march26-21.JPG",
+      "blurb": "A beautiful human bean <3."
+    },
+    {
+      "name": "Zanny",
+      "medium": "Film, Editing",
+      "added": "2026-05-21",
+      "img": "/img/past-artdays/2026/June26/june26-27.JPG",
+      "blurb": "A beautiful human bean <3."
+    }
+  ],
+  "archive": [
+    {
+      "date": "2026-03-01",
+      "title": "Art Days March!",
+      "note": "Captured (with love) on our trusty disposable film camera <3",
+      "photos": [
+        "/img/past-artdays/2026/March26/march26-1.JPG",
+        "/img/past-artdays/2026/March26/march26-2.JPG",
+        "/img/past-artdays/2026/March26/march26-3.JPG",
+        "/img/past-artdays/2026/March26/march26-4.JPG",
+        "/img/past-artdays/2026/March26/march26-5.JPG",
+        "/img/past-artdays/2026/March26/march26-6.JPG",
+        "/img/past-artdays/2026/March26/march26-7.JPG",
+        "/img/past-artdays/2026/March26/march26-8.JPG",
+        "/img/past-artdays/2026/March26/march26-9.JPG",
+        "/img/past-artdays/2026/March26/march26-10.JPG",
+        "/img/past-artdays/2026/March26/march26-11.JPG",
+        "/img/past-artdays/2026/March26/march26-12.JPG",
+        "/img/past-artdays/2026/March26/march26-13.JPG",
+        "/img/past-artdays/2026/March26/march26-14.JPG",
+        "/img/past-artdays/2026/March26/march26-15.JPG",
+        "/img/past-artdays/2026/March26/march26-16.JPG",
+        "/img/past-artdays/2026/March26/march26-17.JPG",
+        "/img/past-artdays/2026/March26/march26-18.JPG",
+        "/img/past-artdays/2026/March26/march26-19.JPG",
+        "/img/past-artdays/2026/March26/march26-20.JPG",
+        "/img/past-artdays/2026/March26/march26-21.JPG",
+        "/img/past-artdays/2026/March26/march26-22.JPG",
+        "/img/past-artdays/2026/March26/march26-23.JPG",
+        "/img/past-artdays/2026/March26/march26-24.JPG",
+        "/img/past-artdays/2026/March26/march26-25.JPG",
+        "/img/past-artdays/2026/March26/march26-26.JPG",
+        "/img/past-artdays/2026/March26/march26-27.JPG",
+        "/img/past-artdays/2026/March26/march26-28.JPG"
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "title": "Art Days April!",
+      "note": "Captured (with love) on our trusty disposable film camera <3",
+      "photos": [
+        "/img/past-artdays/2026/April26/april26-1.JPG",
+        "/img/past-artdays/2026/April26/april26-2.JPG",
+        "/img/past-artdays/2026/April26/april26-3.JPG",
+        "/img/past-artdays/2026/April26/april26-4.JPG",
+        "/img/past-artdays/2026/April26/april26-5.JPG",
+        "/img/past-artdays/2026/April26/april26-6.JPG",
+        "/img/past-artdays/2026/April26/april26-7.JPG",
+        "/img/past-artdays/2026/April26/april26-8.JPG",
+        "/img/past-artdays/2026/April26/april26-9.JPG",
+        "/img/past-artdays/2026/April26/april26-10.JPG",
+        "/img/past-artdays/2026/April26/april26-11.JPG",
+        "/img/past-artdays/2026/April26/april26-12.JPG",
+        "/img/past-artdays/2026/April26/april26-13.JPG",
+        "/img/past-artdays/2026/April26/april26-14.JPG",
+        "/img/past-artdays/2026/April26/april26-15.JPG",
+        "/img/past-artdays/2026/April26/april26-16.JPG",
+        "/img/past-artdays/2026/April26/april26-17.JPG",
+        "/img/past-artdays/2026/April26/april26-18.JPG",
+        "/img/past-artdays/2026/April26/april26-19.JPG",
+        "/img/past-artdays/2026/April26/april26-20.JPG",
+        "/img/past-artdays/2026/April26/april26-21.JPG",
+        "/img/past-artdays/2026/April26/april26-22.JPG",
+        "/img/past-artdays/2026/April26/april26-23.JPG",
+        "/img/past-artdays/2026/April26/april26-24.JPG",
+        "/img/past-artdays/2026/April26/april26-25.JPG",
+        "/img/past-artdays/2026/April26/april26-26.JPG",
+        "/img/past-artdays/2026/April26/april26-27.JPG"
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "title": "Art Days May!",
+      "note": "Captured (with love) on our trusty disposable film camera <3",
+      "photos": [
+        "/img/past-artdays/2026/May26/may26-1.JPG",
+        "/img/past-artdays/2026/May26/may26-2.JPG",
+        "/img/past-artdays/2026/May26/may26-3.JPG",
+        "/img/past-artdays/2026/May26/may26-4.JPG",
+        "/img/past-artdays/2026/May26/may26-5.JPG",
+        "/img/past-artdays/2026/May26/may26-6.JPG",
+        "/img/past-artdays/2026/May26/may26-7.JPG",
+        "/img/past-artdays/2026/May26/may26-8.JPG",
+        "/img/past-artdays/2026/May26/may26-9.JPG",
+        "/img/past-artdays/2026/May26/may26-10.JPG",
+        "/img/past-artdays/2026/May26/may26-11.JPG",
+        "/img/past-artdays/2026/May26/may26-12.JPG",
+        "/img/past-artdays/2026/May26/may26-13.JPG",
+        "/img/past-artdays/2026/May26/may26-14.JPG",
+        "/img/past-artdays/2026/May26/may26-15.JPG",
+        "/img/past-artdays/2026/May26/may26-16.JPG",
+        "/img/past-artdays/2026/May26/may26-17.JPG",
+        "/img/past-artdays/2026/May26/may26-18.JPG",
+        "/img/past-artdays/2026/May26/may26-19.JPG",
+        "/img/past-artdays/2026/May26/may26-20.JPG",
+        "/img/past-artdays/2026/May26/may26-21.JPG",
+        "/img/past-artdays/2026/May26/may26-22.JPG",
+        "/img/past-artdays/2026/May26/may26-23.JPG",
+        "/img/past-artdays/2026/May26/may26-24.JPG",
+        "/img/past-artdays/2026/May26/may26-25.JPG",
+        "/img/past-artdays/2026/May26/may26-26.JPG",
+        "/img/past-artdays/2026/May26/may26-27.JPG",
+        "/img/past-artdays/2026/May26/may26-28.JPG"
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Art Days June!",
+      "note": "Captured (with love) on our trusty disposable film camera <3",
+      "photos": [
+        "/img/past-artdays/2026/June26/june26-1.JPG",
+        "/img/past-artdays/2026/June26/june26-2.JPG",
+        "/img/past-artdays/2026/June26/june26-3.JPG",
+        "/img/past-artdays/2026/June26/june26-4.JPG",
+        "/img/past-artdays/2026/June26/june26-5.JPG",
+        "/img/past-artdays/2026/June26/june26-6.JPG",
+        "/img/past-artdays/2026/June26/june26-7.JPG",
+        "/img/past-artdays/2026/June26/june26-8.JPG",
+        "/img/past-artdays/2026/June26/june26-9.JPG",
+        "/img/past-artdays/2026/June26/june26-10.JPG",
+        "/img/past-artdays/2026/June26/june26-11.JPG",
+        "/img/past-artdays/2026/June26/june26-12.JPG",
+        "/img/past-artdays/2026/June26/june26-13.JPG",
+        "/img/past-artdays/2026/June26/june26-14.JPG",
+        "/img/past-artdays/2026/June26/june26-15.JPG",
+        "/img/past-artdays/2026/June26/june26-16.JPG",
+        "/img/past-artdays/2026/June26/june26-17.JPG",
+        "/img/past-artdays/2026/June26/june26-18.JPG",
+        "/img/past-artdays/2026/June26/june26-19.JPG",
+        "/img/past-artdays/2026/June26/june26-20.JPG",
+        "/img/past-artdays/2026/June26/june26-21.JPG",
+        "/img/past-artdays/2026/June26/june26-22.JPG",
+        "/img/past-artdays/2026/June26/june26-23.JPG",
+        "/img/past-artdays/2026/June26/june26-24.JPG",
+        "/img/past-artdays/2026/June26/june26-25.JPG",
+        "/img/past-artdays/2026/June26/june26-26.JPG",
+        "/img/past-artdays/2026/June26/june26-27.JPG",
+        "/img/past-artdays/2026/June26/june26-28.JPG"
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Art Days July!",
+      "note": "Captured (with love) on our trusty disposable film camera <3",
+      "photos": [
+        "/img/past-artdays/2026/July26/july26-1.JPG",
+        "/img/past-artdays/2026/July26/july26-2.JPG",
+        "/img/past-artdays/2026/July26/july26-3.JPG",
+        "/img/past-artdays/2026/July26/july26-4.JPG",
+        "/img/past-artdays/2026/July26/july26-5.JPG",
+        "/img/past-artdays/2026/July26/july26-6.JPG",
+        "/img/past-artdays/2026/July26/july26-7.JPG",
+        "/img/past-artdays/2026/July26/july26-8.JPG",
+        "/img/past-artdays/2026/July26/july26-9.JPG",
+        "/img/past-artdays/2026/July26/july26-10.JPG",
+        "/img/past-artdays/2026/July26/july26-11.JPG",
+        "/img/past-artdays/2026/July26/july26-12.JPG",
+        "/img/past-artdays/2026/July26/july26-13.JPG",
+        "/img/past-artdays/2026/July26/july26-14.JPG",
+        "/img/past-artdays/2026/July26/july26-15.JPG",
+        "/img/past-artdays/2026/July26/july26-16.JPG",
+        "/img/past-artdays/2026/July26/july26-17.JPG",
+        "/img/past-artdays/2026/July26/july26-18.JPG",
+        "/img/past-artdays/2026/July26/july26-19.JPG",
+        "/img/past-artdays/2026/July26/july26-20.JPG",
+        "/img/past-artdays/2026/July26/july26-21.JPG",
+        "/img/past-artdays/2026/July26/july26-22.JPG",
+        "/img/past-artdays/2026/July26/july26-23.JPG",
+        "/img/past-artdays/2026/July26/july26-24.JPG",
+        "/img/past-artdays/2026/July26/july26-25.JPG"
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "title": "Art Days September!",
+      "note": "Captured (with love) on our trusty disposable film camera <3",
+      "photos": [
+        "/img/past-artdays/2026/September26/sept26-1.JPG",
+        "/img/past-artdays/2026/September26/sept26-2.JPG",
+        "/img/past-artdays/2026/September26/sept26-3.JPG",
+        "/img/past-artdays/2026/September26/sept26-4.JPG",
+        "/img/past-artdays/2026/September26/sept26-5.JPG",
+        "/img/past-artdays/2026/September26/sept26-6.JPG",
+        "/img/past-artdays/2026/September26/sept26-7.JPG",
+        "/img/past-artdays/2026/September26/sept26-8.JPG",
+        "/img/past-artdays/2026/September26/sept26-9.JPG",
+        "/img/past-artdays/2026/September26/sept26-10.JPG",
+        "/img/past-artdays/2026/September26/sept26-11.JPG",
+        "/img/past-artdays/2026/September26/sept26-12.JPG",
+        "/img/past-artdays/2026/September26/sept26-13.JPG",
+        "/img/past-artdays/2026/September26/sept26-15.JPG",
+        "/img/past-artdays/2026/September26/sept26-16.JPG",
+        "/img/past-artdays/2026/September26/sept26-17.JPG",
+        "/img/past-artdays/2026/September26/sept26-18.JPG",
+        "/img/past-artdays/2026/September26/sept26-19.JPG",
+        "/img/past-artdays/2026/September26/sept26-20.JPG",
+        "/img/past-artdays/2026/September26/sept26-21.JPG",
+        "/img/past-artdays/2026/September26/sept26-22.JPG",
+        "/img/past-artdays/2026/September26/sept26-23.JPG",
+        "/img/past-artdays/2026/September26/sept26-24.JPG",
+        "/img/past-artdays/2026/September26/sept26-25.JPG",
+        "/img/past-artdays/2026/September26/sept26-26.JPG",
+        "/img/past-artdays/2026/September26/sept26-27.JPG"
+      ]
+    }
+  ],
+  "contact": "info@artdayadl.com"
 }

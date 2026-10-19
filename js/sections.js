@@ -100,7 +100,7 @@ export function contact(data) {
 
   let mailWindow;
   const openMail = () => mailWindow?.isConnected ? mailWindow.up()
-    : (mailWindow = win(desk, 'New Message', [row('To:', to), row('Subject:', subject), message, el('p', '', 'Opens in your own email app.'), send], { x: 40, y: 20, w: 420 }));
+    : (mailWindow = win(desk, 'New Message', [row('To:', to), row('Subject:', subject), message, el('p', '', 'Opens in your preferred email app :)'), send], { x: 40, y: 20, w: 420 }));
   deskIcon(icons, '📧', 'New Message', openMail);
   openMail();
 }
