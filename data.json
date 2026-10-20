@@ -8,16 +8,16 @@
   },
   "pins": [
     {
-      "type": "callout",
-      "title": "sample community noticeboard title",
-      "by": "Juni",
-      "body": "Looking to do some cool art with cool people :D !"
-    },
-    {
       "type": "showcase",
-      "title": "sample community noticeboard title 2",
-      "by": "juni",
-      "body": "Looking to do some cool art with cool people......!!!!"
+      "title": "Searching for Venue!",
+      "by": "Art Day team.",
+      "body": "Looking for a venue to host the next Art Day! Contact us at info.artday@gmail.com!"
+    },
+        {
+      "type": "callout",
+      "title": "Looking for help with my latest project!",
+      "by": "Juni",
+      "body": "Seeking likeminded folk to help bring my film to life! Message me at info.artday@gmail.com :)"
     },
     {
       "type": "callout",
