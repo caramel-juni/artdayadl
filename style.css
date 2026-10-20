@@ -750,17 +750,47 @@ footer {
     letter-spacing: .2em
 }
 
+/* Footer badges */
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    width: 100%;
+    margin: 1rem auto;
+}
+
 .badges span {
-    display: inline-grid;
-    place-items: center;
+    display: inline-flex;
+    flex: 0 1 88px;
+    align-items: center;
+    justify-content: center;
     width: 88px;
     height: 31px;
-    margin: 3px;
+    margin: 0;
+    padding: 2px;
+    overflow: hidden;
     border: 2px outset #fff;
     background: #c0c0c0;
     font: 10px var(--f-ui);
     text-align: center;
-    color: #000
+    color: #000;
+}
+
+/* Standalone blinkies — no badge box */
+.badges img.blinkie {
+    display: block;
+    flex: 0 0 auto;
+    width: auto;
+    height: 31px;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
 }
 
 .party {
