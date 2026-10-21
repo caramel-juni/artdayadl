@@ -25,7 +25,7 @@ export function win(desk, title, body, opts = {}) {
   desk.querySelector('.bar').append(taskButton);
 
   controls.append(
-    button('_', 'Minimise', () => { frame.hidden = true; }),
+    button('–', 'Minimise', () => { frame.hidden = true; }),
     button('□', 'Maximise', () => frame.classList.toggle('max')),
     button('×', 'Close', () => { frame.remove(); taskButton.remove(); }),
   );
