@@ -3,21 +3,21 @@
     "title": "Art Day: October!",
     "date": "October 24th, 11:30am - 4:30pm",
     "place": "Richards Park, Osmond Terrace, Norwood 5067",
-    "details": "Bring projects, a spark of creativity, friends, and a plate of food to share (if you'd like!). Art supplies & materials provided.",
+    "details": "Feel free to bring a project or just bring yourself! Art supplies & materials provided, along with some BBQ food and shelter.",
     "poster": "img/posters/artday-oct.webp"
   },
   "pins": [
     {
       "type": "showcase",
+      "title": "Venue for Art Day October!",
+      "by": "Art Day team",
+      "body": "We'll see you at Richards Park, Osmond Terrace, Norwood on the 24th of October, for our 7th Art Day! <3"
+    },
+    {
+      "type": "showcase",
       "title": "Searching for Venue!",
       "by": "Art Day team",
       "body": "Looking for a venue to host the next Art Day! Contact us at info.artday@gmail.com!"
-    },
-        {
-      "type": "callout",
-      "title": "Come along to our film fundraising event!",
-      "by": "Stitches Crew",
-      "body": "Come along and support the making of a local short film, Sitches! Details to follow, including date and venue information."
     }
   ],
   "artists": [
@@ -27,20 +27,6 @@
       "added": "2026-01-10",
       "img": "/img/photos/ethos/junipfp.jpg",
       "blurb": "Craves caramel slice and tea."
-    },
-    {
-      "name": "Liz",
-      "medium": "All sorts!",
-      "added": "2026-03-02",
-      "img": "/img/photos/ethos/lizpfp.jpg",
-      "blurb": "A beautiful human bean <3."
-    },
-    {
-      "name": "Zanny",
-      "medium": "Film, Editing",
-      "added": "2026-05-21",
-      "img": "/img/photos/ethos/zannypfp.jpg",
-      "blurb": "A beautiful human bean <3."
     }
   ],
   "archive": [
