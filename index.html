@@ -6,16 +6,17 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; font-src 'self'; media-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
   <title>Art Day · this month</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="fetch" href="data.json" crossorigin="anonymous">
   <script type="module" src="js/main.js"></script>
   <script src="oneko.js" defer></script>
 </head>
 <body data-p="index">
-  <main>
+  <main fetchpriority="high" decoding="async">
     <noscript><p class="scrap">The menu needs JavaScript. <a href="index.html">Home</a></p></noscript>
     <div data-include="header"></div>
     <h1>this month's Art Day:</h1>
     <section class="hero">
-      <img id="poster" alt="This month's event poster">
+      <img id="poster" alt="This month's event poster" fetchpriority="high" decoding="async" src="img/posters/artday-oct.webp">
       <div id="info"></div>
     </section>
     <h2>Community noticeboard:</h2>
