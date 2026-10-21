@@ -36,7 +36,7 @@ html {
 /* the whole site is a framed cork board hung in front of a drifting sky */
 main {
     width: min(60rem, calc(100% - 1.6rem));
-    margin: 1rem auto 2rem;
+    margin: 1rem auto .5rem;
     padding: 1rem 1.2rem 4rem;
 
     border: 14px solid;
@@ -728,7 +728,8 @@ footer {
     white-space: nowrap;
     background: var(--ink);
     color: var(--yellow);
-    margin-bottom: .6rem
+    margin-bottom: .6rem;
+    padding: 5px;
 }
 
 .mq span {
