@@ -23,27 +23,130 @@ export function home(data) {
 
 export const notices = (data) => showPins(data.pins);
 
-// ---- artist wall -----------------------------------------------------------
+
+ // ---- artist wall -----------------------------------------------------------
 export function artists(data) {
   const wall = $('#wall');
   const oldestFirst = (a, b) => (a.added < b.added ? -1 : 1);
   let list = [...data.artists].sort(oldestFirst);
 
-  const card = (a) => {
-    const c = el('button', 'card');
-    c.type = 'button';
-    if (a.img) c.append(img(a.img, a.name));
-    c.append(el('b', '', a.name), el('small', '', a.medium), el('span', '', a.blurb));
-    c.onclick = () => note(a.name, [el('small', '', a.medium), ...(a.img ? [img(a.img, a.name)] : []), el('p', '', a.blurb)], 'artist');
-    return c;
+  // Short preview for the card; keep the full bio for the popup.
+  const bioPreview = (text, maxLength = 65) => {
+    const bio = (text || '').trim();
+    if (bio.length <= maxLength) return bio;
+
+    return bio.slice(0, maxLength).trimEnd() + '…';
   };
+
+  
+const card = (a) => {
+  const c = el('button', 'card');
+  c.type = 'button';
+
+  // Use the portrait and gallery images as the preview carousel.
+  const photos = [...new Set([
+    a.img,
+    ...(Array.isArray(a['gallery-imgs']) ? a['gallery-imgs'] : [])
+  ].filter(Boolean))];
+
+  let image;
+  let current = 0;
+  let timer;
+
+  if (photos.length) {
+    image = img(photos[0], a.name);
+    image.classList.add('card-photo');
+    c.append(image);
+  }
+
+  c.append(
+    el('b', '', a.name),
+    el('small', '', a.medium),
+    el('span', 'bio', bioPreview(a.blurb))
+  );
+
+  // Cycle through photos while hovered.
+  const stopCarousel = () => {
+    clearInterval(timer);
+    timer = undefined;
+    current = 0;
+
+    if (image) {
+      image.src = photos[0];
+      image.alt = a.name;
+    }
+  };
+
+  c.addEventListener('mouseenter', () => {
+    if (photos.length < 2 || timer) return;
+
+    // Change immediately on hover.
+    current = (current + 1) % photos.length;
+    image.src = photos[current];
+    image.alt = `${a.name} — photo ${current + 1}`;
+
+    // Continue cycling every 1.2 seconds.
+    timer = setInterval(() => {
+      current = (current + 1) % photos.length;
+      image.src = photos[current];
+      image.alt = `${a.name} — photo ${current + 1}`;
+    }, 1200);
+  });
+
+  c.addEventListener('mouseleave', stopCarousel);
+  c.addEventListener('focus', () => {
+    if (photos.length < 2 || timer) return;
+
+    timer = setInterval(() => {
+      current = (current + 1) % photos.length;
+      image.src = photos[current];
+      image.alt = `${a.name} — photo ${current + 1}`;
+    }, 1200);
+  });
+
+  c.addEventListener('blur', stopCarousel);
+
+  // Keep the full bio and gallery in the existing popup.
+  c.onclick = () => {
+    const content = [
+      el('small', '', a.medium),
+      ...(a.img ? [img(a.img, a.name)] : []),
+      el('p', '', a.blurb || '')
+    ];
+
+    if (Array.isArray(a['gallery-imgs']) && a['gallery-imgs'].length) {
+      const gallery = el('div', 'artist-gallery');
+
+      a['gallery-imgs'].forEach((src, i) => {
+        gallery.append(img(src, `${a.name} — gallery image ${i + 1}`));
+      });
+
+      content.push(gallery);
+    }
+
+    note(a.name, content, 'artist');
+  };
+
+  return c;
+};
+
+
   const draw = () => wall.replaceChildren(...list.map(card));
 
-  $('#shuffle').onclick = () => { list.sort(() => Math.random() - 0.5); draw(); };
-  $('#order').onclick = () => { list.sort(oldestFirst); draw(); };
+  $('#shuffle').onclick = () => {
+    list.sort(() => Math.random() - 0.5);
+    draw();
+  };
+
+  $('#order').onclick = () => {
+    list.sort(oldestFirst);
+    draw();
+  };
+
   draw();
   autoScroll(wall);
 }
+
 
 // Slowly scroll the wall; pause on hover; loop at the end; skip if the visitor prefers reduced motion.
 function autoScroll(wall) {

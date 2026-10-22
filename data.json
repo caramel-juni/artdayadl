@@ -24,10 +24,29 @@
     {
       "name": "Juni",
       "medium": "Mixed Media - Film, Tech, Writing & Visual Art",
-      "added": "2026-01-10",
+      "added": "2026-10-23",
       "img": "/img/photos/ethos/junipfp.jpg",
-      "blurb": "Craves caramel slice and tea."
+      "blurb": "A multi-modal filmmaker, writer, coder, tinkerer, creator. Craves caramel slice and tea. Creator of esoteric websites and films alike. See: https://blog.juni-mp4.com for more!"
+    },
+    {
+      "name": "Matthew Jacob Shaw",
+      "medium": "Neo-expression - Mixed Media",
+      "added": "2026-10-22",
+      "img": "/img/artists/matt/matt.jpeg",
+        "gallery-imgs": [
+          "/img/artists/matt/matt-art1.jpeg",
+          "/img/artists/matt/matt-art2.jpeg",
+          "/img/artists/matt/matt-art3.jpeg",
+          "/img/artists/matt/matt-art4.jpeg",
+          "/img/artists/matt/matt-art5.jpeg",
+          "/img/artists/matt/matt-art6.jpeg"
+
+        ],
+      "blurb": "I consider myself an old soul and I reflect that in my style and creative arts. Some of my work may scare people but it comes from a good place, working a lot in the past tense using Neo-expression as my main medium, with a raw and expressive brushwork I use highly textured work mixing intensives colours that stems from moments, conversations, thoughts, and feelings in a spontaneous style. If you don't see me it's because I've locked myself in the basement."
     }
+
+
+
   ],
   "archive": [
     {
