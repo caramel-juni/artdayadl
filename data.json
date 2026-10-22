@@ -26,7 +26,14 @@
       "medium": "Mixed Media - Film, Tech, Writing & Visual Art",
       "added": "2026-10-23",
       "img": "/img/photos/ethos/junipfp.jpg",
-      "blurb": "A multi-modal filmmaker, writer, coder, tinkerer, creator. Craves caramel slice and tea. Creator of esoteric websites and films alike. See: https://blog.juni-mp4.com for more!"
+      "gallery-imgs": [
+        ],
+      "blurb": "A multi-modal filmmaker, writer, coder, tinkerer, creator. Craves caramel slice and tea. Creator of esoteric websites and films alike.",
+      "contact": {
+        "email": "juni@juni-mp4.com",
+        "instagram": "https://instagram.com/mtn.dew.is.good.4u",
+        "website": "https://blog.juni-mp4.com"
+      }
     },
     {
       "name": "Matthew Jacob Shaw",
@@ -42,7 +49,27 @@
           "/img/artists/matt/matt-art6.jpeg"
 
         ],
-      "blurb": "I consider myself an old soul and I reflect that in my style and creative arts. Some of my work may scare people but it comes from a good place, working a lot in the past tense using Neo-expression as my main medium, with a raw and expressive brushwork I use highly textured work mixing intensives colours that stems from moments, conversations, thoughts, and feelings in a spontaneous style. If you don't see me it's because I've locked myself in the basement."
+      "blurb": "I consider myself an old soul and I reflect that in my style and creative arts. Some of my work may scare people but it comes from a good place, working a lot in the past tense using Neo-expression as my main medium, with a raw and expressive brushwork I use highly textured work mixing intensives colours that stems from moments, conversations, thoughts, and feelings in a spontaneous style. \n\n If you don't see me it's because I've locked myself in the basement."
+    },
+    {
+      "name": "Cami Cupples",
+      "medium": "Mixed Media Artist",
+      "added": "2026-10-22",
+      "img": "/img/artists/cami/cami.jpeg",
+        "gallery-imgs": [
+          "/img/artists/cami/cami1.jpeg",
+          "/img/artists/cami/cami2.jpeg",
+          "/img/artists/cami/cami3.jpeg",
+          "/img/artists/cami/cami4.jpeg"
+
+        ],
+      "blurb": "Cami Cupples is a mixed media artist and creative facilitator. \n\n She has traveled from the U.S. and created a self-directed art residency at the Rundle Collective for the year, exploring concepts of sustainability, materiality, and community. She has also worked on film creative direction with the wonderful Zanny Edhouse. \n\n With a degree in architectural design, her focus on space-making is integral to her process. She has spent a decade creating community experiences around the world, and is looking to further collaborate on an international scale.",
+      "contact": {
+        "email": "Cupples.cami@gmail.com",
+        "instagram": "https://instagram.com/camimakes",
+        "website": "https://camicupples.com"
+      }
+
     }
 
 

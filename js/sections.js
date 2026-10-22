@@ -31,11 +31,10 @@ export function artists(data) {
   let list = [...data.artists].sort(oldestFirst);
 
   // Short preview for the card; keep the full bio for the popup.
-  const bioPreview = (text, maxLength = 65) => {
-    const bio = (text || '').trim();
-    if (bio.length <= maxLength) return bio;
-
-    return bio.slice(0, maxLength).trimEnd() + '…';
+  const bioPreview = (text, maxLength = 120) => {
+      const bio = (text || '').replace(/\s+/g, ' ').trim();
+      if (bio.length <= maxLength) return bio;
+      return bio.slice(0, maxLength).trimEnd() + '…';
   };
 
   
@@ -114,6 +113,35 @@ const card = (a) => {
       el('p', '', a.blurb || '')
     ];
 
+    if (a.contact) {
+        const contactSection = el('div', 'artist-contact');
+        contactSection.append(el('h3', '', 'Contact details:'));
+
+        if (a.contact.email) {
+            const email = el('a', '', a.contact.email);
+            email.href = `mailto:${a.contact.email}`;
+            contactSection.append(email);
+        }
+
+        if (a.contact.instagram) {
+            const instagram = el('a', '', 'Socials');
+            instagram.href = a.contact.instagram;
+            instagram.target = '_blank';
+            instagram.rel = 'noopener noreferrer';
+            contactSection.append(instagram);
+        }
+
+        if (a.contact.website) {
+            const website = el('a', '', 'Website');
+            website.href = a.contact.website;
+            website.target = '_blank';
+            website.rel = 'noopener noreferrer';
+            contactSection.append(website);
+        }
+
+        content.push(contactSection);
+    }
+
     if (Array.isArray(a['gallery-imgs']) && a['gallery-imgs'].length) {
       const gallery = el('div', 'artist-gallery');
 
@@ -122,7 +150,7 @@ const card = (a) => {
       });
 
       content.push(gallery);
-    }
+      }
 
     note(a.name, content, 'artist');
   };
