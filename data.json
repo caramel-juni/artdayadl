@@ -18,8 +18,16 @@
       "title": "Searching for Venue!",
       "by": "Art Day team",
       "body": "Looking for a venue to host the next Art Day! Contact us at info.artday@gmail.com!"
+    },
+    {
+      "type": "poster",
+      "title": "Art Day: October!",
+      "by": "Art Day team",
+      "poster": "img/posters/artday-oct.webp",
+      "body": "Join us at Richards Park, Osmond Terrace, Norwood on October 24th, 11:30am–4:30pm! Art supplies, materials and BBQ food provided."
     }
   ],
+  
   "artists": [
     {
       "name": "Juni",

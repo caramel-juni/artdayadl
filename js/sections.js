@@ -5,13 +5,73 @@ import { win, makeDesk, deskIcon } from './windows.js';
 import { note } from './notes.js';
 
 // ---- pins (home + notices) -------------------------------------------------
+
+ // ---- pins (home + notices) -------------------------------------------------
 const pin = (p) => {
   const b = el('button', 'pin ' + p.type);
   b.type = 'button';
-  b.append(el('span', 't', p.title), el('span', '', p.body.slice(0, 70) + '…'), el('small', '', 'from ' + p.by));
-  b.onclick = () => note(p.title, [el('p', '', p.body), el('small', '', 'from ' + p.by)], p.type);
+
+  // Poster pins show the actual poster on the board.
+  if (p.type === 'poster' && p.poster) {
+    b.classList.add('poster-pin');
+    b.setAttribute('aria-label', `${p.title} — open notice`);
+
+    const img = el('img', 'poster-image');
+    img.src = p.poster;
+    img.alt = '';
+
+    const tape = el('span', 'poster-tape');
+    tape.setAttribute('aria-hidden', 'true');
+
+    const caption = el('span', 'poster-caption', p.title);
+
+    b.append(img, tape, caption);
+  } else {
+    // Default behaviour for ordinary sticky notes.
+    b.append(
+      el('span', 't', p.title),
+      el('span', '', (p.body || '').slice(0, 70) + '…'),
+      el('small', '', 'from ' + p.by)
+    );
+  }
+
+
+  // Both types open the existing sticky-note dialog.
+  b.onclick = () => {
+    const content = [];
+
+    // Show the poster inside the popup as well.
+    if (p.type === 'poster' && p.poster) {
+      const galleryImage = el('img', 'note-gallery-image');
+      galleryImage.src = p.poster;
+      galleryImage.alt = p.title || 'Event poster';
+      galleryImage.loading = 'lazy';
+
+      content.push(galleryImage);
+    }
+
+    // Existing notice text and author.
+    if (p.body) {
+      content.push(el('p', '', p.body));
+    }
+
+    if (p.by) {
+      content.push(el('small', '', 'from ' + p.by));
+    }
+
+    note(
+      p.title,
+      content,
+      p.type === 'poster' ? 'showcase' : p.type
+    );
+  };
+
+  return b;
+
+
   return b;
 };
+
 const showPins = (pins) => pins.forEach((p) => $('#pins').append(pin(p)));
 
 export function home(data) {

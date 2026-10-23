@@ -1403,3 +1403,104 @@ header {
         font-size: 0.75rem;
     }
 }
+
+
+/* ---- physical posters pinned to the noticeboard ---- */
+
+.pin.poster-pin {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0.65rem 0.65rem 0.8rem;
+    background: #fff9e9;
+    border: 1px solid #e0d4b9;
+    box-shadow: 3px 5px 0 #0003, 0 2px 8px #0002;
+    cursor: pointer;
+    transform: rotate(-1.5deg);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* Alternate poster angles */
+.pin.poster-pin:nth-child(even) {
+    transform: rotate(1.4deg);
+}
+
+.pin.poster-pin:nth-child(3n) {
+    transform: rotate(-0.7deg);
+}
+
+/* The actual poster: show the entire image without cropping */
+.poster-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 32rem;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 1px 3px #0002;
+    filter: none;
+}
+
+/* Translucent masking tape across the top */
+.poster-tape {
+    position: absolute;
+    z-index: 2;
+    top: 0.15rem;
+    left: 50%;
+    width: 4.8rem;
+    height: 1.35rem;
+    transform: translateX(-50%) rotate(-3deg);
+    background: #e9d8a5bb;
+    border-left: 1px solid #fff6;
+    border-right: 1px solid #fff6;
+    box-shadow: 0 1px 2px #0002;
+    pointer-events: none;
+}
+
+/* Handwritten title beneath the poster */
+.pin.poster-pin .poster-caption {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.15rem 0.1rem;
+    font: 1.25rem/1.2 var(--f-head);
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* Hover and keyboard focus */
+.pin.poster-pin:hover,
+.pin.poster-pin:focus-visible {
+    transform: rotate(0) scale(1.035);
+    z-index: 3;
+    box-shadow: 4px 7px 0 #0003, 0 5px 14px #0003;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .pin.poster-pin {
+        transition: none;
+    }
+}
+
+
+/* Poster image inside the popup */
+.note-gallery-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+
+    /* Centre the poster without stretching its background */
+    margin: 0 auto 1rem;
+    padding: 0.25rem;
+    background: #fffdf5;
+    border: 1px solid #dfd4bd;
+    box-shadow: 2px 3px 6px #0002;
+    filter: none;
+}
