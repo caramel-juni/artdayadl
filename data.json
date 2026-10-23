@@ -8,23 +8,24 @@
   },
   "pins": [
     {
-      "type": "showcase",
-      "title": "Venue for Art Day October!",
+      "type": "poster",
+      "title": "Art Day: October!",
       "by": "Art Day team",
-      "body": "We'll see you at Richards Park, Osmond Terrace, Norwood on the 24th of October, for our 7th Art Day! <3"
+      "poster": "img/posters/artday-oct.webp",
+      "body": "Join us at Richards Park, Osmond Terrace, Norwood on October 24th, 11:30am-4:30pm! Art supplies, materials and BBQ food provided."
+    },
+    {
+      "type": "poster",
+      "title": "October Moviejuice: Scum '87 & Chronovisor",
+      "by": "Moviejuice team",
+      "poster": "img/notices/moviejuice_oct.jpeg",
+      "body": "Moviejuice is an Adelaide-based film collective dedicated to the screening, distribution and celebration of alternative and experimental cinema. Formed in 2022, they have run film and music events in both theatrical and DIY spaces, showcasing everything from curated short programmes and feature-film premieres to rare retrospectives and live score performances. \n\n Moviejuice works to foster a local screen culture that celebrates the intersection of art and community, with a focus on the independent Australian film scene and its future. \n\n At AFF 2026, Moviejuice returns with an evening of historical conspiracy and paranoia amongst the abyssal depths of the archive. Kevin Walker and Jack Auen's Rotterdam favourite Chronovisor and local hero Gabriel Bath's Scum 87 burrow through hidden records and esoteric media in a series of late-night research binges that gradually take over the psyche. Falling down a rabbit hole of mysterious literary and audiovisual ephemera, both films form a DIY diptych on the pleasures and horrors of the deep dive, and the manifold ways that one can find themselves trapped in the past...."
     },
     {
       "type": "showcase",
       "title": "Searching for Venue!",
       "by": "Art Day team",
       "body": "Looking for a venue to host the next Art Day! Contact us at info.artday@gmail.com!"
-    },
-    {
-      "type": "poster",
-      "title": "Art Day: October!",
-      "by": "Art Day team",
-      "poster": "img/posters/artday-oct.webp",
-      "body": "Join us at Richards Park, Osmond Terrace, Norwood on October 24th, 11:30am–4:30pm! Art supplies, materials and BBQ food provided."
     }
   ],
   
